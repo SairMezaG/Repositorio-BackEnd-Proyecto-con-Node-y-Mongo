@@ -1,33 +1,51 @@
 const mongoose = require("mongoose")
 
-const UsuariosSchema = new mongoose.Schema(
+const usuariosSchema = new mongoose.Schema(
     {
-        Nombre:{
-            type: String
-        },
-
-        Direccion:{
-            type: String
-        },
-
-        Telefono:{
-            type: Number
-        },
-
-        Correo:{
+        username: {
             type: String,
+            required: true,
             unique: true
         },
-
-        Password:{
-            type: String
+        password: {
+            type: String,
+            required: true
         },
-
-        Rol:{
-            type:["Operario","Administrador","Proveedor"],
-            default:"Operario"
+        cedula:{
+            type:String,
+            required:true,
+            unique:true
+        },
+        nombreCompleto:{
+            type:String,
+            required:true
+        },
+        telefono:{
+            type:Number,
+            required:true
+        },
+        direccion:{
+            type:String,
+            required:true
+        },
+        email:{
+            type:String,
+            required:true,
+            unique: true
+        },
+        estado:{
+            type:Boolean,
+            require:true
+        },
+        foto:{
+            type:String,
+            require:true
+        },
+        tipoUsuario:{
+            type:String,
+            enum: ['Administrador','Operario','Proveedor'],
+            require:true
         }
-
     },
     {
         timestamps: true,
@@ -36,4 +54,4 @@ const UsuariosSchema = new mongoose.Schema(
     }
 )
 
-module.exports = mongoose.model("usuarios", UsuariosSchema)
+module.exports = mongoose.model("usuarios", usuariosSchema)
